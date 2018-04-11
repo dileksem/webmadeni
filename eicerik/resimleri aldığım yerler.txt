@@ -1,0 +1,16 @@
+bg-resim:https://www.freepik.com/index.php?goto=74&idfoto=1252906
+
+bg-resim2:https://pngtree.com/back/down?id=MjA0NDQx&type=1
+
+bg-gunes:https://pngtree.com/freepng/vector-cartoon-sun_2610816.html
+
+bg-cim.png: https://pngtree.com/element/down?id=NDczNDk=&type=1
+
+bg-bayrak.png:https://www.appannie.com/en/apps/google-play/app/com.flowapps.stickerturkbayragi/
+
+bg-kare:<a href="http://www.freepik.com">Designed by DigimadMediaDesign / Freepik</a>
+tik.png https://pngtree.com/element/down?id=MzMyMjgz&type=1
+
+agac.png: https://www.kisspng.com/png-tree-of-life-free-content-clip-art-cartoon-trees-217712/
+
+havuc.png: https://www.kisspng.com/png-cartoon-carrot-wallpaper-cartoon-carrot-142212/download-png.html

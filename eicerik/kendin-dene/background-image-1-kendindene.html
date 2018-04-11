@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang=tr>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link rel="stylesheet" href="../plugins/editor/css/bootstrap.min.css">
+  <link href="../plugins/editor/css/main.css" rel="stylesheet">
+  <script src="../dist/js/jquery.min.js"></script>
+  <script src="../dist/js/jquery-ui.js"></script>
+
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../plugins/editor/addon/hint/show-hint.css">
+
+  <link rel="stylesheet" href="../plugins/editor/lib/codemirror.css">
+  <script src="../plugins/editor/lib/codemirror.js"></script>
+  <script src="../plugins/editor/lib/xml.js"></script>
+  <script src="../plugins/editor/lib/javascript.js"></script>
+  <script src="../plugins/editor/lib/css.js"></script>
+  <script src="../plugins/editor/lib/closetag.js"></script>
+  <script src="../plugins/editor/js/custom.js"></script>
+  <script src="../plugins/editor/js/screenfull.js"></script>
+
+  <script src="../plugins/editor/addon/hint/show-hint.js"></script>
+  <script src="../plugins/editor/addon/hint/css-hint.js"></script>
+  <script src="../plugins/editor/addon/hint/anyword-hint.js"></script>
+  <script src="../plugins/editor/dictionary.js"></script>
+  <style type="text/css">
+  .CodeMirror {
+    height: auto;
+  }
+  .goster{
+    display: block;
+  }
+  .gizle{
+    display: none;
+  }
+
+
+  </style>
+</head>
+<body>
+<div id="code-blog" style="width: 100%">
+  <div class="panel-primary header">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <button id="runButton" type="button" class="btn btn-default" onclick="submitTryit()">Çalıştır</button>
+        <button id="tamekran" type="button" class="btn btn-default" onclick="tamEkranYap()">Tam Ekran</button>
+        <button id="ekle" type="button" class="btn btn-default"
+                onclick="updateCodeMirror('background-image:');">background-image
+        </button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('background-size:');">
+          background-size
+        </button>
+        <button id="normalekran" type="button" class="btn btn-default gizle" onclick="normalEkranYap()">Geri
+          Dön
+        </button>
+        <button style="right:0px;" type="button" class="btn btn-warning" data-toggle="modal"
+                data-target="#cevap"> Cevabı Gör
+        </button>
+      </h3>
+    </div>
+  </div>
+  <!--Cevabı Gör Başlangıç -->
+  <div class="modal fade" id="cevap">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Uygulama Cevabı</h4>
+        </div>
+        <div class="modal-body">
+
+          <p>
+            <br>div{
+            <br>background-image :url(bg-resim2.jpg);
+            <br>background-size:cover;
+            <br>}</p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cevabı Gör Bitiş -->
+  <div id="mainContent" class="mainContent">
+    <div id="mainContentHolder">
+      <div id="draggable"></div>
+      <div class="main-left">
+        <div class="left-inner-content">
+          <div class="left-inner-main">
+              <textarea id=editor name=editor>
+<!-- Kendin Dene: 1- Sende div etiketinin arkaplan resmine bg-resim2.jpg değerini verebilirsin.   -->
+                <!-- Kendin Dene: 2- Sayfanın arkaplan resmi arkaplanı kaplasın.-->
+<html>
+<head>
+<style>
+   
+</style>
+</head>
+<body>
+<div style="width:400px; height:300px;">Bu uygulamada div etiketine arkaplan resmi veriyoruz.</div>
+</body>
+</html>
+
+</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="right-inner-content">
+          <div class="right-inner-main">
+            <div id="iframewrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+   var dictionary = cssDictionary();
+
+// Register our custom Codemirror hint plugin.
+CodeMirror.registerHelper('hint', 'dictionaryHint', function(editor) {
+    var cur = editor.getCursor(),
+        curLine = editor.getLine(cur.line);
+    var start = cur.ch,
+        end = start;
+    while (end < curLine.length && /[\w$]+/.test(curLine.charAt(end))) ++end;
+    while (start && /[\w$]+/.test(curLine.charAt(start - 1))) --start;
+    var curWord = start != end && curLine.slice(start, end);
+    var regex = new RegExp('^' + curWord, 'i');
+    return {
+        list: (!curWord ? [] : dictionary.filter(function(item) {
+            return item.match(regex);
+        })).sort(),
+        from: CodeMirror.Pos(cur.line, start),
+        to: CodeMirror.Pos(cur.line, end)
+    }
+});
+
+CodeMirror.commands.autocomplete = function(cm) {
+    CodeMirror.showHint(cm, CodeMirror.hint.dictionaryHint);
+};
+    // Initialize CodeMirror editor with a nice html5 canvas demo.
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        mode: 'text/html',
+        autoCloseTags: true,
+        lineWrapping: true,
+        lineNumbers:true,
+		 extraKeys: {"Ctrl-Space": "autocomplete"}
+      });
+      
+      submitTryit();
+
+
+  </script>
+
+  <script type="text/javascript">
+
+  document.getElementById('tamekran-button').addEventListener('click', () => {
+  if (screenfull.enabled) {
+    screenfull.request();
+  } else {
+    // Ignore or do something else
+  }
+});
+
+$('#normalekran-button').click(function () {
+        screenfull.exit();
+      });
+
+
+  </script>
+  <script type="text/javascript">
+function updateCodeMirror(data){
+    var cm = $('.CodeMirror')[0].CodeMirror;
+    var doc = cm.getDoc();
+    var cursor = doc.getCursor(); // gets the line number in the cursor position
+    var line = doc.getLine(cursor.line); // get the line contents
+    var pos = { // create a new object to avoid mutation of the original selection
+        line: cursor.line,
+        ch: line.length - 1 // set the character position to the end of the line
+    }
+    doc.replaceRange(data, pos); // adds a new line
+}
+
+
+  </script>
+  <script>
+$(function () {
+      //$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+      if (!screenfull.enabled) {
+        return false;
+      }
+
+      $('#tamekran').click(function () {
+        screenfull.request($('#code-blog')[0]);
+        $('#tamekran').addClass('gizle');
+        $('#normalekran').removeClass('gizle')
+        // Does not require jQuery. Can be used like this too:
+        // screenfull.request(document.getElementById('container'));
+      });
+
+      $('#normalekran').click(function () {
+        screenfull.exit();
+        $('#tamekran').removeClass('gizle');
+        $('#normalekran').addClass('gizle')
+      });
+
+
+     /* $('#toggle').click(function () {
+        screenfull.toggle($('#code-blog')[0]);
+      });
+
+      $('#request2').click(function () {
+        screenfull.request();
+      });
+
+      $('#demo-img').click(function () {
+        screenfull.toggle(this);
+      });
+      function fullscreenchange() {
+        var elem = screenfull.element;
+
+        $('#status').text('Is fullscreen: ' + screenfull.isFullscreen);
+
+        if (elem) {
+          $('#element').text('Element: ' + elem.localName + (elem.id ? '#' + elem.id : ''));
+        }
+
+        if (!screenfull.isFullscreen) {
+          $('#external-iframe').remove();
+          document.body.style.overflow = 'auto';
+        }
+      }
+*/
+
+      screenfull.on('change', fullscreenchange);
+
+      // Set the initial values
+     // fullscreenchange();
+    });
+
+
+  </script>
+</div>
+</body>
+</html>

@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang=tr>
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+  <title>Editor</title>
+  <link rel="stylesheet" href="../plugins/editor/css/bootstrap.min.css">
+  <link href="../plugins/editor/css/main.css" rel="stylesheet">
+  <script src="../dist/js/jquery.min.js"></script>
+  <script src="../dist/js/jquery-ui.js"></script>
+
+  <script src="../bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="../plugins/editor/addon/hint/show-hint.css">
+
+  <link rel="stylesheet" href="../plugins/editor/lib/codemirror.css">
+  <script src="../plugins/editor/lib/codemirror.js"></script>
+  <script src="../plugins/editor/lib/xml.js"></script>
+  <script src="../plugins/editor/lib/javascript.js"></script>
+  <script src="../plugins/editor/lib/css.js"></script>
+  <script src="../plugins/editor/lib/closetag.js"></script>
+  <script src="../plugins/editor/js/custom.js"></script>
+  <script src="../plugins/editor/js/screenfull.js"></script>
+
+  <script src="../plugins/editor/addon/hint/show-hint.js"></script>
+  <script src="../plugins/editor/addon/hint/css-hint.js"></script>
+  <script src="../plugins/editor/addon/hint/anyword-hint.js"></script>
+  <script src="../plugins/editor/dictionary.js"></script>
+  <style type="text/css">
+  .CodeMirror {
+    height: auto;
+  }
+  .goster{
+    display: block;
+  }
+  .gizle{
+    display: none;
+  }
+
+
+  </style>
+</head>
+
+<body>
+<div id="code-blog" style="width: 100%">
+  <div class="panel-primary header">
+    <div class="panel-heading">
+      <h3 class="panel-title">
+        <button id="runButton" type="button" class="btn btn-default" onclick="submitTryit()">Çalıştır</button>
+        <button id="tamekran" type="button" class="btn btn-default" onclick="tamEkranYap()">Tam Ekran</button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('border:');">border
+        </button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('padding:');">
+          padding
+        </button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('margin-top:');">
+          margin-left
+        </button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('margin-bottom:');">
+          margin-right
+        </button>
+        <button id="ekle" type="button" class="btn btn-default" onclick="updateCodeMirror('float:');">float
+        </button>
+        <button id="normalekran" type="button" class="btn btn-default gizle" onclick="normalEkranYap()">Geri
+          Dön
+        </button>
+        <button style="right:0px;" type="button" class="btn btn-warning" data-toggle="modal"
+                data-target="#cevap"> Cevabı Gör
+        </button>
+
+      </h3>
+    </div>
+  </div>
+  <!--Cevabı Gör Başlangıç -->
+  <div class="modal fade" id="cevap">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title">Uygulama Cevabı</h4>
+        </div>
+        <div class="modal-body">
+
+          <p>
+          <pre>
+		body{
+		margin: 0;
+		padding: 0;
+		}
+				
+		div{
+		position: sticky;
+		top:0px;
+		}
+				
+		ul{
+		list-style: none;
+		background-color: #444;
+		text-align: center;
+		padding: 0;
+		margin: 0;
+		}
+				
+		li{
+		font-family: 'Black Han Sans', Impact, sans-serif;
+		display: inline-block;
+		margin-right: -4px;
+		width: 150px;
+		height: 50px;
+		line-height: 50px;
+		font-size: 20px;
+		}
+			 
+		a{
+		text-decoration: none;
+		color: #fff;
+		display: block;
+		}
+			 
+		a:hover{
+		background-color:  #ffff99;
+		color: #444;
+		}
+			 
+		.secili {
+		background-color: #ffaaaa;
+		color: #444;
+		}				
+				</pre>
+
+          </p>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-default pull-left" data-dismiss="modal">Kapat</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- Cevabı Gör Bitiş -->
+  <div id="mainContent" class="mainContent">
+    <div id="mainContentHolder">
+      <div id="draggable"></div>
+      <div class="main-left">
+        <div class="left-inner-content">
+          <div class="left-inner-main">
+              <textarea id=editor name=editor>
+<!-- Kendin Dene: body etiketinin iç ve dış boşluk değerlerini sıfırlayalım.-->
+
+                <!-- div etiketinin position değerine sticky değerini, üst uzaklığına (top) 0px verelim. .-->
+
+                <!-- ul etiketinin madde işaretlerini kaldıralım, arkaplan rengini #444, yazı hizalamasını ortalı, iç ve dış boşluklarını sıfırlayalım.-->
+
+                <!-- li etiketinin yazı tipini 'Black Han Sans', Impact, sans-serif,
+                görünümünü satıriçi blok,
+                sağ dış boşluk değerini -4px,
+                genişlik 150px,
+                yükseklik 50 px,
+                satır yüksekliği 50px,
+                yazı boyutu 20px verelim.-->
+
+                <!--a etiketinin alt çizgisini kaldıralım, yazı rengini #fff değerini verelim, görünümünü blok yapalım. -->
+
+                <!--a etiketinin üstüne fare ile geldiğimizde (hover) arkaplan rengini #ffff99, yazı rengini #444 yapalım. -->
+                <!--secili sınıfına arkaplan rengi #ffaaaa, yazı rengi #444 verelim.  -->
+<html>
+<head>
+<link href="https://fonts.googleapis.com/css?family=Black+Han+Sans" rel="stylesheet">
+<style>	
+	body {
+	  
+	}
+	div{
+ 
+	}
+	ul {
+	  
+	}
+	li{
+	  
+	}
+ 
+	a{
+	  
+	}
+ 
+	a:hover {
+	 
+	}
+ 
+	.secili {
+	  
+	}
+	
+</style>
+</head>
+<body>
+
+<h1>Yatay Menü Tasarlamayı Öğreniyorum.</h1>
+
+<div>
+      <ul>
+        <li><a href="#">Ana Sayfa</a></li>
+        <li><a class="secili" href="#">Okulumuz</a></li>
+        <li><a href="#">Alanlarımız</a></li>
+        <li><a href="#">Projelerimiz</a></li>
+        <li><a href="#">İletişim</a></li>
+      </ul>
+    </div>
+
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p><p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum</p>
+</body>
+
+</textarea>
+          </div>
+        </div>
+      </div>
+      <div class="main-right">
+        <div class="right-inner-content">
+          <div class="right-inner-main">
+            <div id="iframewrapper"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script>
+   
+var dictionary = cssDictionary();
+
+// Register our custom Codemirror hint plugin.
+CodeMirror.registerHelper('hint', 'dictionaryHint', function(editor) {
+    var cur = editor.getCursor(),
+        curLine = editor.getLine(cur.line);
+    var start = cur.ch,
+        end = start;
+    while (end < curLine.length && /[\w$]+/.test(curLine.charAt(end))) ++end;
+    while (start && /[\w$]+/.test(curLine.charAt(start - 1))) --start;
+    var curWord = start != end && curLine.slice(start, end);
+    var regex = new RegExp('^' + curWord, 'i');
+    return {
+        list: (!curWord ? [] : dictionary.filter(function(item) {
+            return item.match(regex);
+        })).sort(),
+        from: CodeMirror.Pos(cur.line, start),
+        to: CodeMirror.Pos(cur.line, end)
+    }
+});
+
+CodeMirror.commands.autocomplete = function(cm) {
+    CodeMirror.showHint(cm, CodeMirror.hint.dictionaryHint);
+};
+    // Initialize CodeMirror editor with a nice html5 canvas demo.
+      var editor = CodeMirror.fromTextArea(document.getElementById('editor'), {
+        mode: 'text/html',
+        autoCloseTags: true,
+        lineWrapping: true,
+        lineNumbers:true,
+		 extraKeys: {"Ctrl-Space": "autocomplete"}
+      });
+      
+      submitTryit();
+
+
+  </script>
+
+  <script type="text/javascript">
+
+  document.getElementById('tamekran-button').addEventListener('click', () => {
+  if (screenfull.enabled) {
+    screenfull.request();
+  } else {
+    // Ignore or do something else
+  }
+});
+
+$('#normalekran-button').click(function () {
+        screenfull.exit();
+      });
+
+
+  </script>
+  <script type="text/javascript">
+function updateCodeMirror(data){
+    var cm = $('.CodeMirror')[0].CodeMirror;
+    var doc = cm.getDoc();
+    var cursor = doc.getCursor(); // gets the line number in the cursor position
+    var line = doc.getLine(cursor.line); // get the line contents
+    var pos = { // create a new object to avoid mutation of the original selection
+        line: cursor.line,
+        ch: line.length - 1 // set the character position to the end of the line
+    }
+    doc.replaceRange(data, pos); // adds a new line
+}
+
+
+  </script>
+  <script>
+$(function () {
+      //$('#supported').text('Supported/allowed: ' + !!screenfull.enabled);
+
+      if (!screenfull.enabled) {
+        return false;
+      }
+
+      $('#tamekran').click(function () {
+        screenfull.request($('#code-blog')[0]);
+        $('#tamekran').addClass('gizle');
+        $('#normalekran').removeClass('gizle')
+        // Does not require jQuery. Can be used like this too:
+        // screenfull.request(document.getElementById('container'));
+      });
+
+      $('#normalekran').click(function () {
+        screenfull.exit();
+        $('#tamekran').removeClass('gizle');
+        $('#normalekran').addClass('gizle')
+      });
+
+
+     /* $('#toggle').click(function () {
+        screenfull.toggle($('#code-blog')[0]);
+      });
+
+      $('#request2').click(function () {
+        screenfull.request();
+      });
+
+      $('#demo-img').click(function () {
+        screenfull.toggle(this);
+      });
+      function fullscreenchange() {
+        var elem = screenfull.element;
+
+        $('#status').text('Is fullscreen: ' + screenfull.isFullscreen);
+
+        if (elem) {
+          $('#element').text('Element: ' + elem.localName + (elem.id ? '#' + elem.id : ''));
+        }
+
+        if (!screenfull.isFullscreen) {
+          $('#external-iframe').remove();
+          document.body.style.overflow = 'auto';
+        }
+      }
+*/
+
+      screenfull.on('change', fullscreenchange);
+
+      // Set the initial values
+     // fullscreenchange();
+    });
+
+
+  </script>
+</div>
+</body>
+</html>

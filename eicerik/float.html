@@ -1,0 +1,519 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>float Özelliği</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Kod Renklendirme -->
+  <link rel="stylesheet" type="text/css" href="plugins/prism/prism.css">
+  <link href="https://fonts.googleapis.com/css?family=Indie+Flower" rel="stylesheet">
+
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header ---------------------------------------------------------------------------------------------- -->
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="css-nedir.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><img src="resim/dy-yildiz.png" width="36" height="36"></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="resim/e-icerik-logo.png" width="36" height="36"> <b>E</b>içerik</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+    </nav>
+  </header>
+  <!-- ------------------------------------------------------------------------------------------------------------ -->
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- menu yükleme alanı -->
+    <section class="sidebar">
+
+
+      <!-- search form (Optional)
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Ara...">
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+     /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">DERS KONULARI</li>
+        <li><a href="css-nedir.html"><i class="fa fa-link"></i> <span>CSS Nedir?</span></a></li>
+        <li><a href="css-soz-dizimi.html"><i class="fa fa-link"></i> <span>CSS Sözdizimi (Syntax)</span></a>
+        </li>
+        <li><a href="seciciler.html"><i class="fa fa-link"></i> <span>CSS Seçiciler</span></a></li>
+        <!-- Optionally, you can add icons to the links -->
+
+        <!--  FONT Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>FONT ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="font-family-style.html">Font Family-Style</a></li>
+            <li><a href="font-size-weight.html">Font Size-Weight</a></li>
+            <li><a href="font-variant-responsive.html">Font Variant</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  BackGround Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>ZEMİN ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="background-attachment.html">Background Attachment</a></li>
+            <li><a href="background-color.html">Background Color</a></li>
+            <li><a href="background-image.html">Background Image</a></li>
+            <li><a href="background-position.html">Background Position</a></li>
+            <li><a href="background-repeat.html">Background Repeat</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  BOERDER Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>KENARLIK ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="border-color-width.html">Border Color</a></li>
+            <li><a href="border-radius.html">Border Radius</a></li>
+            <li><a href="border-style.html">Border Style</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  TEXT Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>METİN ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="text-color-align.html">Text Color</a></li>
+            <li><a href="text-decoration-transform.html">Transform</a></li>
+            <li><a href="text-direction-line-height.html">Line Height</a></li>
+            <li><a href="text-indent-letter-spacing.html">Letter Spacing</a></li>
+            <li><a href="text-shadow-word-spacing.html">Word Spacing</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+        <li><a href="width-heigth.html"><i class="fa fa-link"></i> <span>Width - Heigth</span></a></li>
+        <li><a href="display.html"><i class="fa fa-link"></i> <span>Display</span></a></li>
+        <li><a href="float.html"><i class="fa fa-link"></i> <span>Float</span></a></li>
+        <li><a href="link.html"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li><a href="list.html"><i class="fa fa-link"></i> <span>List</span></a></li>
+        <li><a href="margin-padding.html"><i class="fa fa-link"></i> <span>Margin-Padding</span></a></li>
+
+        <li><a href="position.html"><i class="fa fa-link"></i> <span>Position</span></a></li>
+        <li><a href="overflow.html"><i class="fa fa-link"></i> <span>Overflow</span></a></li>
+        <li><a href="menu.html"><i class="fa fa-link"></i> <span>Menü</span></a></li>
+        <li><a href="menu-dropdown.html"><i class="fa fa-link"></i> <span>Menü Dropdown</span></a></li>
+
+
+        <li><a href="quiz.html"><i class="fa fa-link"></i> <span>KONU TESTİ</span></a></li>
+        <li><a href="kaynak.html"><i class="fa fa-link"></i> <span>KAYNAKLAR</span></a></li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        float Özelliği
+        <small>Kaydırma Özelliği</small>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+
+      <!--------------------------  Sayfa içeriği burada yer alacak   -------------------------->
+
+      <!-- Konu anlatım alanı başlangıç      ------------------------------------------------------------ -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header">
+              <i class="fa fa-edit"></i>
+              <h3 class="box-title">float Özelliği</h3>
+            </div>
+            <div class="box-body">
+              <p>CSS <b>float</b> özelliği bir HTML elementinin bir kapsayıcı (container) element içinde
+                kaydırılması ile ilgilidir.
+                float değeri <b>sola (left)</b>,<b>sağa (right)</b>,
+                <b>hiçbir yere (none)</b> gibi çeşitleri vardır.</p>
+              <p>float özelliği ile resimler ve yazıları hizalayabilir, menü oluşturabilir ya da web
+                sayfası tasarımı yapabiliriz.</p>
+              <p>float ile kaydırdığımız son elementten sonra <b>clear:both</b> özelliğini kullanarak <b>kaydırma
+                işlemini sonlandırmalıyız</b>
+                . Eğer clear yapmazsak
+                diğer elementler de kaymaya devam eder.</p>
+              <div style="margin-bottom:20px; margin-top:20px;">
+                <div style="border:1px solid #808080; width:350px; padding:15px; float:left;margin-left:0px;">
+                  <div style="width:30%; height:50px; background-color:#e6f7ff; margin:5px; float:left;">
+                    A
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#ffff80; margin:5px; float:left;">
+                    B
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#e6f7ff; margin:5px; float:left;">
+                    C
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#ffff80; margin:5px; float:left;">
+                    D
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#e6f7ff; margin:5px; float:left;">
+                    E
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#ffff80; margin:5px; float:left;">
+                    F
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#e6f7ff; margin:5px; float:left;">
+                    G
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#ffff80; margin:5px; float:left;">
+                    H
+                  </div>
+                  <div style="width:30%; height:50px; background-color:#e6f7ff; margin:5px; float:left;">
+                    I
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+
+                <div style="border:1px solid #808080; width:350px; padding:10px; float:left;margin-left:0px;">
+                  <div style="width:100%; height:30px; background-color:#b3ffb3; margin:5px; float:left;">
+                    <ul style="	background-color:#cce6ff;
+	padding: 5px;">
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                      <a href="#">
+                        <li style="background-color:#ffffcc;
+	padding: 2px; 
+	display:inline;	margin:3px;">Lorem
+                        </li>
+                      </a>
+                    </ul>
+
+                  </div>
+                  <div style="width:30%; height:100px; background-color:#ffd699; margin:5px; float:left;">
+                    B
+                  </div>
+                  <div style="width:30%; height:100px; background-color:#ffd699; margin:5px; float:left;">
+                    C
+                  </div>
+                  <div style="width:30%; height:100px; background-color:#ffd699; margin:5px; float:left;">
+                    D
+                  </div>
+                  <div style="width:100%; height:30px; background-color:#b3ffb3; margin:5px; float:left;">
+                    E
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+
+                <div style="border:1px solid #808080; width:350px; padding:5px; float:left; margin-left:0px;">
+                  <div style="width:63%; height:90px; background-color:#e6f7ff; margin:5px; float:left;">
+                    Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit. Phasellus ligula ante, ultrices vel placerat eu adipiscing
+                    elit.
+                  </div>
+                  <div style="width:30%; height:190px; background-image:url('havuc.png'); background-repeat:no-repeat; background-position: center center;
+background-color:#ffff80; margin:5px; float:right;">B
+                  </div>
+                  <div style="width:30%; height:90px; background-color:#f0b3ff; margin:5px; float:left;">
+                    C
+                  </div>
+                  <div style="width:30%; height:90px; background-color:#ccffdd; margin:5px; float:left;">
+                    D
+                  </div>
+                  <div style="clear:both;"></div>
+                </div>
+                <div style="clear:both;"></div>
+              </div>
+
+              <pre><code class="language-css">
+ <!--    <html>
+    <head>-->
+    <style>		
+	.d1{	float:left;		/*Elementi sola kaydırır.*/		}
+	
+	.d2{	float:right;	/*Elementi sağa kaydırır.*/		}
+	
+	.d3{	float:none;		/*Elementi kaydırmaz. Elementlerin varsayılan float özelliği budur.*/	}
+
+	.d4{	clear:left;		/*Sola kaydırma işlemini sonlandırır.*/		}
+	
+	.d5{	clear:right;	/*Sağa kaydırma işlemini sonlandırır.*/		}
+	
+	.d6{	clear:both;		/*Bütün kaydırma işlemini sonlandırır.*/	}
+    </style>
+                <!--   </head>
+                  <body>
+                  </body>
+                  </html>-->
+</code></pre>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Konu anlatım alanı bitiş       ----------------------------------------------------------------- -->
+
+      <div class="row">
+        <!-- Örnek Kod Alanı Başlangıç      ---------------------------------------------------------------- -->
+        <div class="col-md-6">
+          <div class="box box-success">
+            <div class="box-header">
+              <i class="fa fa-edit"></i>
+              <h3 class="box-title">Örnek Kod</h3>
+            </div>
+            <div class="box-body">
+          
+      <pre>
+        <code class="language-css">
+	.d1{	
+	float:left;			
+	}	
+	.d2{	
+	float:right;		
+	}	
+	.d3{	
+	float:none;		
+	}		
+	.d4{	
+	clear:both;			
+	}			
+</code></pre>
+
+
+            </div>
+          </div>
+        </div>
+        <!-- Örnek Kod Alanı Bitiş         ----------------------------------------------------------------- -->
+
+        <!-- Video Kod Alanı Başlangıç     ----------------------------------------------------------------- -->
+        <div class="col-md-6">
+          <div class="box box-info">
+            <div class="box-header">
+              <i class="fa fa-edit"></i>
+              <h3 class="box-title">Video</h3>
+            </div>
+            <div class="box-body">
+
+              <!-- Video Ekleme Kodu Başlangıç -->
+              <video width="100%" height="100%" controls>
+                <source src="overflow.mp4" type="video/mp4">
+                <source src="video/float.mp4" type="video/mp4">
+                Tarayıcınız bu özelliği desteklemiyor.
+              </video>
+
+
+              <!-- Video Ekleme Kodu Bitiş -->
+            </div>
+          </div>
+        </div>
+        <!-- Video Kod Alanı Bitiş          ---------------------------------------------------------------- -->
+      </div>
+
+      <!-- Örnek alanı başlangıç     ------------------------------------------------------------ -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-warning">
+            <div class="box-header">
+              <i class="fa fa-edit"></i>
+              <h3 class="box-title">Örnek Uygulama</h3>
+            </div>
+            <div class="box-body">
+
+              <div class="col-md-2">
+                <a href="ornek/float-1.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  1</a>
+              </div>
+              <div class="col-md-2">
+                <a href="ornek/float-2.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  2</a>
+              </div>
+              <div class="col-md-2">
+                <a href="ornek/float-3.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  3</a>
+              </div>
+              <div class="col-md-2">
+                <a href="ornek/float-4.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  4</a>
+              </div>
+              <div class="col-md-2">
+                <a href="ornek/float-5.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  5</a>
+              </div>
+              <div class="col-md-2">
+                <a href="ornek/float-6.html" target="_blank" class="btn btn-block btn-default">Örnek
+                  6</a>
+              </div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Örnek alanı bitiş       ----------------------------------------------------------------- -->
+      <!-- Kendin Dene alanı başlangıç     ------------------------------------------------------------ -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-warning">
+            <div class="box-header">
+              <i class="fa fa-edit"></i>
+              <h3 class="box-title">Kendin Dene</h3>
+            </div>
+            <div class="box-body">
+              <div class="col-md-2">
+                <a href="kendin-dene/float-1-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+              <div class="col-md-2">
+                <a href="kendin-dene/float-2-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+              <div class="col-md-2">
+                <a href="kendin-dene/float-3-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+              <div class="col-md-2">
+                <a href="kendin-dene/float-4-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+              <div class="col-md-2">
+                <a href="kendin-dene/float-5-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+              <div class="col-md-2">
+                <a href="kendin-dene/float-6-kendindene.html" target="_blank"
+                   class="btn btn-block btn-default">Alıştırma</a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Kendin Dene alanı bitiş       ----------------------------------------------------------------- -->
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Hata Bildir
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2018 <a href="http://denizyildizlari2.meb.gov.tr">Denizyıldızları MTAL</a>.</strong>
+    Tüm Hakları Saklıdır.
+  </footer>
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="dist/js/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+<!-- Kod renklendirme javascript dosyası -->
+<script src="plugins/prism/prism.js"></script>
+<script>
+  $('#header-logo').load("icerik/header-logo.html",function(e){
+
+      });
+    $('#sidebar-menu').load("icerik/menu.html",function(e){
+
+      });
+
+      $(document).ready(function() {
+        var url = window.location; 
+        var element = $('ul.sidebar-menu a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0; }).parent().addClass('active');
+        if (element.is('li')) { 
+             element.addClass('active').parent().parent('li').addClass('active')
+         }
+    });
+
+
+</script>
+</body>
+</html>

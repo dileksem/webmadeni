@@ -1,0 +1,779 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <title>e-içerik v 1.0</title>
+  <!-- Tell the browser to be responsive to screen width -->
+  <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
+  <link rel="stylesheet" href="bower_components/bootstrap/dist/css/bootstrap.min.css">
+  <!-- Font Awesome -->
+  <link rel="stylesheet" href="bower_components/font-awesome/css/font-awesome.min.css">
+  <!-- Ionicons -->
+  <link rel="stylesheet" href="bower_components/Ionicons/css/ionicons.min.css">
+  <!-- Theme style -->
+  <link rel="stylesheet" href="dist/css/AdminLTE.min.css">
+  <link rel="stylesheet" href="dist/css/skins/skin-blue.min.css">
+  <!-- Google Font -->
+  <link rel="stylesheet"
+        href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
+  <!-- Kod Renklendirme -->
+  <link rel="stylesheet" type="text/css" href="plugins/prism/prism.css">
+
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+  <script>
+    /** Simple JavaScript Quiz
+     * version 0.1.0
+     * http://journalism.berkeley.edu
+     * created by: Jeremy Rue @jrue
+     *
+     * Copyright (c) 2013 The Regents of the University of California
+     * Released under the GPL Version 2 license
+     * http://www.opensource.org/licenses/gpl-2.0.php
+     * This program is distributed in the hope that it will be useful, but
+     * WITHOUT ANY WARRANTY; without even the implied warranty of
+     * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+     */
+
+    var quiztitle = "";
+
+    /**
+    * Set the information about your questions here. The correct answer string needs to match
+    * the correct choice exactly, as it does string matching. (case sensitive)
+    *
+    */
+    var quiz = [
+        {
+            "question"      :   "Soru-1: CSS'in Türkçe ve İngilizce açılımı aşağıdakilerden hangisinde doğru verilmiştir?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "Basamaklı Stil Sayfaları, Cascading Style Sheets",
+                                    "Banner Stil Sayfası, Cascading Creative Stylesheets ",
+                                    "Biçimlendirilmiş Stil Sayfası, Cascading Creative Stylesheets",
+                                    "Basamaklı Stil Sayfaları, Cascade Style Sheets"
+                                ],
+            "correct"       :   "Basamaklı Stil Sayfaları, Cascading Style Sheets",
+            "explanation"   :   "Basamaklı Stil Sayfaları, Cascading Style Sheets",
+        },
+        {
+            "question"      :   "Soru-2: "background-color .....?..... red;" Arka plan rengini kırmızı yaparken kullandığımız
+                                 CSS sözdizimi ifadesinde soru işaretli yere hangi noktalama işaretini koyabiliriz?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "?",
+                                    ":",
+                                    ",",
+                                    ";"
+                                ],
+            "correct"       :   ":",
+            "explanation"   :   "Özellik ifadesinden sonra : koyarız.",
+        },
+        {
+            "question"      :   "Soru-3: Aşağıdaki resimde soru işaretli yere hangi noktalama işaretini koyabiliriz?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "?",
+                                    ":",
+                                    ",",
+                                    ";"
+                                ],
+            "correct"       :   ";",
+            "explanation"   :   "CSS kod satırını sonlandırmak için ; kullanırız.",
+        },
+{
+            "question"      :   "Soru-4: Sınıf seçicileri ile ilgili aşağıdakilerden hangisi doğrudur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "Sınıf seçicileri : işareti ile başlar.",
+                                    "HTML etiketinde sınıfı çağırıken  class: \"sınıfadi\" şeklinde çağırırız.",
+                                    "HTML etiketinde sınıfı çağırıken  class= \"sınıfadi\" şeklinde çağırırız.",
+                                    "HTML etiketinde sınıfı çağırıken  class= \".sınıfadi\" şeklinde çağırırız."
+                                ],
+            "correct"       :   "HTML etiketinde sınıfı çağırıken  class= \"sınıfadi\" şeklinde çağırırız.",
+            "explanation"   :   "HTML etiketinde sınıfı çağırıken = işaretinden sonra çift tırnak içinde sadece sınıf adını yazarak çağırırız.",
+        },
+        {
+            "question"      :   "Soru-5: Bir div etiketine renk ve yazi adında iki sınıf seçicisi uygulayacaksak aşağıdaki tanımlamalardan hangisi doğrudur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "<div class=\"renk||yazi\"></div>",
+                                    "<div class=\"renk+yazi\"></div>",
+                                    "<div class=\"renk,yazi\"></div>",
+                                    "<div class=\"renk yazi\"></div>"
+                                ],
+            "correct"       :   "<div class=\"renk yazi\"></div>",
+            "explanation"   :   "Birden fazla sınıf seçicisi uygulamak istersek aralarına boşluk koymak yeterlidir.",
+        },
+        {
+            "question"      :   "Soru-6: Bir CSS seçisi div.renk şeklinde tanımlanmışır. Bu ifade ile ilgili aşağıdakilerden hangisi doğrudur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "Bütün div etiketlerindeki renk sınıfını ifade eder.",
+                                    "Bütün HTML etiketlerindeki renk sınıfını ifade eder.",
+                                    "Sadece div etiketlerinin içindeki diğer etiketlere uygulanan renk sınıflarını ifade eder.",
+                                    "Yanlış bir ifadedir."
+                                ],
+            "correct"       :   "Bütün div etiketlerindeki renk sınıfını ifade eder.",
+            "explanation"   :   "etiketAdi.sinifAdi şeklindeki CSS ifadesi sadece o  etiket adındaki sınıfı ifade eder.",
+        },
+		 {
+            "question"      :   "Soru-7: Bir id seçicisi tanımlarken hangi aşağıdaki işaretlerden hangisini kullanırız?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    ".",
+                                    "$",
+                                    "&",
+                                    "#"
+                                ],
+            "correct"       :   "#",
+            "explanation"   :   "CSS id seçicisi tanımlarken # işaretini kullanırız.",
+        },
+		{
+            "question"      :   "Soru-8: HTML sayfasına uygulayacağımız biçimleri \"bicim.css\" isimli harici dosyadan alıyorsak aşağıdaki ifadelerden hangisi doğru olur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"bicim\">",
+                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"bicim.css\">",
+                                    "<link rel=\"stylesheet\" type=\"text/css\" href=\"bicim.cs\">",
+                                    "<link rel=\"stylesheet\" href=\"text/css\" type=\"bicim.css\">"
+                                ],
+            "correct"       :   "<link rel=\"stylesheet\" type=\"text/css\" href=\"bicim.css\">",
+            "explanation"   :   "<link rel=\"stylesheet\" type=\"text/css\" href=\"bicim.css\"> olarak tanımlarız.",
+        },
+		{
+            "question"      :   "Soru-9: Bir HTML etiketinin yazı rengini satır içi CSS(inline CSS) ile kırmızı yapmak istersek aşağıdaki seçeneklerden hangisi doğru olur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "<p style=\"color:red;\"></p>",
+                                    "<p still=\"color:red;\"></p>",
+                                    "<p css=\"color:red;\"></p>",
+                                    "<p style=\"color:red\"></p>"
+                                ],
+            "correct"       :   "<p style=\"color:red;\"></p>",
+            "explanation"   :   "<p style=\"color:red;\"></p> olarak tanımlarız.",
+        },
+		{
+            "question"      :   "Soru-10: Bir HTML sayfasında CSS scriptlerini tanımlamak istersek aşağıdakilerden hangisi doğru olur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "<style><style> etiketini head etiketinin içinde tanımlarız.",
+                                    "<style></style> etiketini head etiketinin içinde tanımlarız.",
+                                    "<style></style> etiketini body etiketinin içinde tanımlarız.",
+                                    "<style></style> etiketini title etiketinin içinde tanımlarız."
+                                ],
+            "correct"       :   "<style></style> etiketini head etiketinin içinde tanımlarız.",
+            "explanation"   :   "style etiketlerini head etiketinin içinde gösteririz.",
+        },
+		{
+            "question"      :   "Soru-11: CSS background özelliği ile aşağıdakilerden hangisini yapamayız?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "background-color ile arkaplan rengini değiştirebiliriz.",
+                                    "background-image ile arka plan resmi verebiliriz.",
+                                    "background-fixed ile arkaplan resmini sabitleriz.",
+                                    "background-size ile resmin arkaplanını kapmalasını sağlayabiliriz."
+                                ],
+            "correct"       :   "background-fixed ile arkaplan resmini sabitleriz.",
+            "explanation"   :   "background-attachment:fixed; ile arkaplan resmini sabitleriz.",
+        },
+		{
+            "question"      :   "Soru-12: CSS border özelliği ile aşağıdakilerden hangisi yanlıştır?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "border-width ile kenarlık genişliğini ayarlayabiliriz.",
+                                    "border-style özelliği solid, dotted gibi değerler alabilir.",
+                                    "border-color kenarlık rengini değiştirebiliriz.",
+                                    "Kenarlık biçimlendirmesini tek satırda yapmak istersek \"border-style-width-color: solid 2px red;\" şeklinde yapabiliriz."
+                                ],
+            "correct"       :   "Kenarlık biçimlendirmesini tek satırda yapmak istersek \"border-style-width-color: solid 2px red;\" şeklinde yapabiliriz.",
+            "explanation"   :   "Tek satırda biçimlendirme \"border:solid 1px red\" şeklinde yazılmalıdır.",
+        },
+		{
+            "question"      :   "Soru-13: Bir div etiketinin kenarlığını 5px yuvarlatılması istenmektedir. Hangi kullanım doğrudur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "<div style=\" border:solid 1px red; border-radius:5px;\"></div>",
+                                    "<div style=\" border:solid 1px red; border-radius:5p;\"></div>",
+                                    "<div style=\" border:solid 1px red; border-radio:5px;\"></div>",
+                                    "<div style=\" border:solid 1px red; border-radio:5p;\"></div>"
+                                ],
+            "correct"       :   "<div style=\" border:solid 1px red; border-radius:5px;\"></div>",
+            "explanation"   :   "<div style=\" border:solid 1px red; border-radius:5px;\"></div> şeklinde tanımlayabiliriz.",
+        },
+		{
+            "question"      :   "Soru-14: display özelliği ile aşağıdakilerden hangisi doğrudur?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "display:none; HTML elementinin görüntülenmemesini sağlar.",
+                                    "li elementi blok seviyeli bir elemandır. Varsayılan display özelliği \"inline\" değeridir." ,
+                                    "img elementinin varsayılan display özelliği \"display:block;\" tur.",
+                                    "li elementine \"display:inline;\" olarak verirsek yanyana sıralayabiliriz. "
+                                ],
+            "correct"       :   "display:none; HTML elementinin görüntülenmemesini sağlar.",
+            "explanation"   :   "li elementinin varsayılan display özelliği block, img elementinin varsayılan display özelliği inline'dır. li elementini yanyana  sıralanması için display:inline'dır.",
+        },
+		{
+            "question"      :   "Soru-15: CSS font özelliği ile aşağıdakilerden hangisini yapamayız?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "font-family ile yazı tipini değiştirebiliriz.",
+                                    "font-punto ile yazı büyüklüğünü değiştirebiliriz.",
+                                    "font-variant ile küçük harf yazılar büyük harfe, büyük harf harflerinde yazı boyutu büyür.",
+                                    "font-weight yazıyı kalın yazmayı sağlar."
+                                ],
+            "correct"       :   "font-punto ile yazı büyüklüğünü değiştirebiliriz.",
+            "explanation"   :   "font-size ile yazı büyüklüğünü değiştirebiliriz.",
+        },
+		{
+            "question"      :   "Soru-16: CSS özellikleri ile ilgili aşağıdakilerden hangisi yanlıştır?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "line-height satır yüksekliğini ayarlamamızı sağlar.",
+                                    "width değerine px veya vw cinsinden değerler verebiliriz.",
+                                    "list-style-image ile listenin madde işaretlerine resim verebiliriz.",
+                                    "margin elementin içeriğinin kenarlıklara olan uzaklığıdır."
+                                ],
+            "correct"       :   "margin elementin içeriğinin kenarlıklara olan uzaklığıdır.",
+            "explanation"   :   "margin HTML elementlerinin birbirleri ile olan uzaklığıdır (dış boşluk).",
+        },
+		{
+            "question"      :   "Soru-17: CSS overflow özelliği ile ilgili aşağıdakilerden hangisi yanlıştır?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "overflow ile elementi sağa veya sola kaydırabiliriz.",
+                                    "Kenarlığı olan HTML elementlerinin varsayılan overflow özelliği görünürdür(visible).",
+                                    "\"overflow:hidden;\" özellği elemnetin içeriği taşarsa taşan kısmı gizler.",
+                                    "\"overflow:auto;\" özelliği ile içerik taşarsa kaydırma çubukları çıkar. Taşmazsa çıkmaz."
+                                ],
+            "correct"       :   "overflow ile elementi sağa veya sola kaydırabiliriz.",
+            "explanation"   :   "overflow elementin taşan içeriğinin görüntülenip görüntülenmemesi ile ilgilidir. Elementi kaydırmak için float kullanırız.",
+        },
+		{
+            "question"      :   "Soru-18: CSS float özelliği ile ilgili aşağıdakilerden hangisi yanlıştır?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "\"float:left;\" elementi sola kaydırmayı sağlar.",
+                                    "\"float:right;\" elementi sağa kaydırmayı sağlar.",
+                                    "Elementlerin varsayılan float özelliği both değeridir.",
+                                    "Kaydırma işleminin sonlandırmak için \"clear:both;\" kullanırız"
+                                ],
+            "correct"       :   "Elementlerin varsayılan float özelliği both değeridir.",
+            "explanation"   :   "Elementlerin varsayılan float özelliği none değeridir.",
+        },
+		{
+            "question"      :   "Soru-19: CSS özellikleri ile ilgili hangisi yanlıştır?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "text-align yazıyı satırda ortalamayı sağlar.",
+                                    "text-indent satıra girinti vermeyi sağlar.",
+                                    "text-decoration ile linklerin altındaki çizgiyi kaldırabiliriz.",
+                                    "text-upper ile yazıyı büyük harfe çevirebiliriz."
+                                ],
+            "correct"       :   "text-upper ile yazıyı büyük harfe çevirebiliriz.",
+            "explanation"   :   "text-transform ile büyük-küçük harfe çevirebiliriz.",
+        },
+		{
+            "question"      :   "Soru-20: padding değerinin genişliği arttırmaması için aşağıdakilerden hangisi uygulanabilir?",
+            "image"         :   "css.png",
+            "choices"       :   [
+                                    "box-shadow:5px;",
+                                    "box-sizing:border-box;",
+                                    "padding:none;",
+                                    "padding:auto;"
+                                ],
+            "correct"       :   "box-sizing:border-box;",
+            "explanation"   :   "\"box-sizing:border-box;\" ile padding değerinin genişliği arttırmamasını sağlarız.",
+        },
+    ];
+
+
+    /******* No need to edit below this line *********/
+    var currentquestion = 0, score = 0, submt=true, picked;
+
+    jQuery(document).ready(function($){
+
+        /**
+         * HTML Encoding function for alt tags and attributes to prevent messy
+         * data appearing inside tag attributes.
+         */
+        function htmlEncode(value){
+          return $(document.createElement('div')).text(value).html();
+        }
+
+        /**
+         * This will add the individual choices for each question to the ul#choice-block
+         *
+         * @param {choices} array The choices from each question
+         */
+        function addChoices(choices){
+            if(typeof choices !== "undefined" && $.type(choices) == "array"){
+                $('#choice-block').empty();
+                for(var i=0;i<choices.length; i++){
+                    $(document.createElement('li')).addClass('choice choice-box').attr('data-index', i).text(choices[i]).appendTo('#choice-block');                    
+                }
+            }
+        }
+        
+        /**
+         * Resets all of the fields to prepare for next question
+         */
+        function nextQuestion(){
+            submt = true;
+            $('#explanation').empty();
+            $('#question').text(quiz[currentquestion]['question']);
+            $('#pager').text( ' Toplam Soru Sayısı: ' + quiz.length);
+            if(quiz[currentquestion].hasOwnProperty('image') && quiz[currentquestion]['image'] != ""){
+                if($('#question-image').length == 0){
+                    $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question'])).insertAfter('#question');
+                } else {
+                    $('#question-image').attr('src', quiz[currentquestion]['image']).attr('alt', htmlEncode(quiz[currentquestion]['question']));
+                }
+            } else {
+                $('#question-image').remove();
+            }
+            addChoices(quiz[currentquestion]['choices']);
+            setupButtons();
+        }
+
+        /**
+         * After a selection is submitted, checks if its the right answer
+         *
+         * @param {choice} number The li zero-based index of the choice picked
+         */
+        function processQuestion(choice){
+            if(quiz[currentquestion]['choices'][choice] == quiz[currentquestion]['correct']){
+                $('.choice').eq(choice).css({'background-color':'#50D943'});
+                $('#explanation').html('<strong>Doğru!</strong> ' + htmlEncode(quiz[currentquestion]['explanation']));
+                score++;
+            } else {
+                $('.choice').eq(choice).css({'background-color':'#D92623'});
+                $('#explanation').html('<strong>Yanlış Cevap :( Doğrusu==></strong> ' + htmlEncode(quiz[currentquestion]['explanation']));
+            }
+            currentquestion++;
+            $('#submitbutton').html('SONRAKİ &raquo;').on('click', function(){
+                if(currentquestion == quiz.length){
+                    endQuiz();
+                } else {
+                    $(this).text('Cevabımı Kontrol Et!').css({'color':'#222'}).off('click');
+                    nextQuestion();
+                }
+            })
+        }
+
+        /**
+         * Sets up the event listeners for each button.
+         */
+        function setupButtons(){
+            $('.choice').on('mouseover', function(){
+                $(this).css({'background-color':'#e1e1e1'});
+            });
+            $('.choice').on('mouseout', function(){
+                $(this).css({'background-color':'#fff'});
+            })
+            $('.choice').on('click', function(){
+                picked = $(this).attr('data-index');
+                $('.choice').removeAttr('style').off('mouseout mouseover');
+                $(this).css({'border-color':'#222','font-weight':700,'background-color':'#c1c1c1'});
+                if(submt){
+                    submt=false;
+                    $('#submitbutton').css({'color':'#000'}).on('click', function(){
+                        $('.choice').off('click');
+                        $(this).off('click');
+                        processQuestion(picked);
+                    });
+                }
+            })
+        }
+        
+        /**
+         * Quiz ends, display a message.
+         */
+        function endQuiz(){
+            $('#explanation').empty();
+            $('#question').empty();
+            $('#choice-block').empty();
+            $('#submitbutton').remove();
+            $('#question').text( quiz.length + " sorudan "+ score +" tane doğrun var. " );
+            $(document.createElement('h2')).css({'text-align':'center', 'font-size':'4em'}).text('% '+Math.round(score/quiz.length * 100)+ ' başarılısın ' ).insertAfter('#question');
+        }
+
+        /**
+         * Runs the first time and creates all of the elements for the quiz
+         */
+        function init(){
+            //add title
+           // if(typeof quiztitle !== "undefined" && $.type(quiztitle) === "string"){
+            //    $(document.createElement('h1')).text(quiztitle).appendTo('#frame');
+           // } else {
+           //     $(document.createElement('h1')).text("Quiz").appendTo('#frame');
+           // }
+
+            //add pager and questions
+            if(typeof quiz !== "undefined" && $.type(quiz) === "array"){
+                //add pager
+                $(document.createElement('p')).addClass('pager').attr('id','pager').text(' Toplam Soru Sayısı: ' + quiz.length).appendTo('#frame');
+                //add first question
+                $(document.createElement('h2')).addClass('question').attr('id', 'question').text(quiz[0]['question']).appendTo('#frame');
+                //add image if present
+                if(quiz[0].hasOwnProperty('image') && quiz[0]['image'] != ""){
+                    $(document.createElement('img')).addClass('question-image').attr('id', 'question-image').attr('src', quiz[0]['image']).attr('alt', htmlEncode(quiz[0]['question'])).appendTo('#frame');
+                }
+                $(document.createElement('p')).addClass('explanation').attr('id','explanation').html('&nbsp;').appendTo('#frame');
+            
+                //questions holder
+                $(document.createElement('ul')).attr('id', 'choice-block').appendTo('#frame');
+            
+                //add choices
+                addChoices(quiz[0]['choices']);
+            
+                //add submit button
+                $(document.createElement('div')).addClass('choice-box').attr('id', 'submitbutton').text('Cevabımı Kontrol Et!').css({'font-weight':700,'color':'#222','padding':'30px 0','padding-left':'10px'}).appendTo('#frame');
+            
+                setupButtons();
+            }
+        }
+        
+        init();
+    });
+
+
+  </script>
+  <style type="text/css" media="all">
+ html,body,div,span,h1,h2,h3,h4,h5,h6,p,code,small,strike,strong,sub,sup,b,u,i
+		{
+			border:0;
+			font-size:100%;
+			font:inherit;
+			vertical-align:baseline;
+			margin:0;padding:0;
+		} 
+		
+        article,aside,details,figcaption,figure,footer,header,hgroup,menu,nav,section
+		{
+			display:block;
+		} 
+		
+        body
+		{
+			line-height:1; 
+			font:normal 0.9em/1em "Helvetica Neue", 
+			Helvetica, Arial, 
+			sans-serif;
+		} 
+		
+        ol,ul
+		{
+			list-style:none;
+		}
+		
+        strong
+		{
+			font-weight:700;
+		}
+		
+        #frame
+		{
+			/*max-width:620px;*/
+			width:auto;
+			border:1px solid #ccc;
+			background:#fff;
+			padding:10px;
+			margin:3px;
+		}
+		
+        h1
+		{
+			font:normal bold 2em/1.8em "Helvetica Neue", Helvetica, Arial, sans-serif;
+			text-align:left;
+			border-bottom:1px solid #999;
+			padding:0;
+			width:auto;
+		}
+		
+        h2
+		{
+			font:italic bold 1.3em/1.2em "Helvetica Neue", Helvetica, Arial, sans-serif;
+			padding:0;
+			text-align:center;
+			margin:20px 0;
+			min-height:50px;
+		}
+		
+        p.pager
+		{
+			margin:5px 0 5px; 
+			font:bold 1em/1em "Helvetica Neue", Helvetica, Arial, sans-serif;
+			color:#999;
+		}
+		
+        img.question-image
+		{
+			display:block;
+			max-width:144px;
+			margin:10px auto;			
+			width:100%;
+			height:auto;
+		}
+		
+        #choice-block
+		{
+			display:block;
+			list-style:none;
+			margin:0;
+			padding:0;
+		}
+        #submitbutton
+		{
+			background:#E8E8E8;		
+		}
+        #submitbutton:hover
+		{
+			background:#D3D3D3;
+		}
+        #explanation
+		{
+			margin:0 auto;
+			padding:20px;
+			width:75%;
+			min-height:30px;
+		}
+        .choice-box
+		{
+			display:block;
+			text-align:left;
+			margin:8px auto;
+			padding:10px;
+			border:1px solid #666;
+			cursor:pointer;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;		
+			border-radius: 5px;
+		}
+
+
+  </style>
+</head>
+
+<body class="hold-transition skin-blue sidebar-mini">
+<div class="wrapper">
+
+  <!-- Main Header ---------------------------------------------------------------------------------------------- -->
+  <header class="main-header">
+    <!-- Logo -->
+    <a href="css-nedir.html" class="logo">
+      <!-- mini logo for sidebar mini 50x50 pixels -->
+      <span class="logo-mini"><img src="resim/dy-yildiz.png" width="36" height="36"></span>
+      <!-- logo for regular state and mobile devices -->
+      <span class="logo-lg"><img src="resim/e-icerik-logo.png" width="36" height="36"> <b>E</b>içerik</span>
+    </a>
+    <!-- Header Navbar -->
+    <nav class="navbar navbar-static-top" role="navigation">
+      <!-- Sidebar toggle button-->
+      <a href="#" class="sidebar-toggle" data-toggle="push-menu" role="button">
+        <span class="sr-only">Toggle navigation</span>
+      </a>
+    </nav>
+  </header>
+  <!-- ------------------------------------------------------------------------------------------------------------ -->
+  <!-- Left side column. contains the logo and sidebar -->
+  <aside class="main-sidebar">
+    <!-- menu yükleme alanı -->
+    <section class="sidebar">
+
+
+      <!-- search form (Optional)
+      <form action="#" method="get" class="sidebar-form">
+        <div class="input-group">
+          <input type="text" name="q" class="form-control" placeholder="Ara...">
+          <span class="input-group-btn">
+              <button type="submit" name="search" id="search-btn" class="btn btn-flat"><i class="fa fa-search"></i>
+              </button>
+            </span>
+        </div>
+      </form>
+     /.search form -->
+
+      <!-- Sidebar Menu -->
+      <ul class="sidebar-menu" data-widget="tree">
+        <li class="header">DERS KONULARI</li>
+        <li><a href="css-nedir.html"><i class="fa fa-link"></i> <span>CSS Nedir?</span></a></li>
+        <li><a href="css-soz-dizimi.html"><i class="fa fa-link"></i> <span>CSS Sözdizimi (Syntax)</span></a>
+        </li>
+        <li><a href="seciciler.html"><i class="fa fa-link"></i> <span>CSS Seçiciler</span></a></li>
+        <!-- Optionally, you can add icons to the links -->
+
+        <!--  FONT Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>FONT ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="font-family-style.html">Font Family-Style</a></li>
+            <li><a href="font-size-weight.html">Font Size-Weight</a></li>
+            <li><a href="font-variant-responsive.html">Font Variant</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  BackGround Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>ZEMİN ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="background-attachment.html">Background Attachment</a></li>
+            <li><a href="background-color.html">Background Color</a></li>
+            <li><a href="background-image.html">Background Image</a></li>
+            <li><a href="background-position.html">Background Position</a></li>
+            <li><a href="background-repeat.html">Background Repeat</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  BOERDER Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>KENARLIK ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="border-color-width.html">Border Color</a></li>
+            <li><a href="border-radius.html">Border Radius</a></li>
+            <li><a href="border-style.html">Border Style</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+        <!--  TEXT Menü için başlık ve alt başlık düzenlenecek kısım aktif olacak elemana active sınıfı verilecek
+              ---------------------------------------------------------------------------------  -->
+        <li class="treeview">
+          <a href="#"><i class="fa fa-link"></i> <span>METİN ÖZELLİKLERİ</span>
+            <span class="pull-right-container">
+                <i class="fa fa-angle-left pull-right"></i>
+              </span>
+          </a>
+          <ul class="treeview-menu">
+            <li><a href="text-color-align.html">Text Color</a></li>
+            <li><a href="text-decoration-transform.html">Transform</a></li>
+            <li><a href="text-direction-line-height.html">Line Height</a></li>
+            <li><a href="text-indent-letter-spacing.html">Letter Spacing</a></li>
+            <li><a href="text-shadow-word-spacing.html">Word Spacing</a></li>
+          </ul>
+        </li>
+        <!-- ------------------------------------------------------------------------------------------------------------ -->
+
+        <li><a href="width-heigth.html"><i class="fa fa-link"></i> <span>Width - Heigth</span></a></li>
+        <li><a href="display.html"><i class="fa fa-link"></i> <span>Display</span></a></li>
+        <li><a href="float.html"><i class="fa fa-link"></i> <span>Float</span></a></li>
+        <li><a href="link.html"><i class="fa fa-link"></i> <span>Link</span></a></li>
+        <li><a href="list.html"><i class="fa fa-link"></i> <span>List</span></a></li>
+        <li><a href="margin-padding.html"><i class="fa fa-link"></i> <span>Margin-Padding</span></a></li>
+
+        <li><a href="position.html"><i class="fa fa-link"></i> <span>Position</span></a></li>
+        <li><a href="overflow.html"><i class="fa fa-link"></i> <span>Overflow</span></a></li>
+        <li><a href="menu.html"><i class="fa fa-link"></i> <span>Menü</span></a></li>
+        <li><a href="menu-dropdown.html"><i class="fa fa-link"></i> <span>Menü Dropdown</span></a></li>
+
+
+        <li><a href="quiz.html"><i class="fa fa-link"></i> <span>KONU TESTİ</span></a></li>
+        <li><a href="kaynak.html"><i class="fa fa-link"></i> <span>KAYNAKLAR</span></a></li>
+      </ul>
+      <!-- /.sidebar-menu -->
+    </section>
+    <!-- /.sidebar -->
+  </aside>
+
+  <!-- Content Wrapper. Contains page content -->
+  <div class="content-wrapper">
+    <!-- Content Header (Page header) -->
+    <section class="content-header">
+      <h1>
+        Değerlendirme Soruları
+        <small></small>
+      </h1>
+    </section>
+
+    <!-- Main content -->
+    <section class="content container-fluid">
+
+
+      <!--------------------------  Sayfa içeriği burada yer alacak   -------------------------->
+
+      <!-- Konu anlatım alanı başlangıç      ------------------------------------------------------------ -->
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-primary">
+            <div class="box-header">
+
+              <h3 class="box-title"></h3>
+            </div>
+            <div class="box-body">
+
+              <div id="frame" role="content"></div>
+
+            </div>
+          </div>
+        </div>
+      </div>
+      <!-- Konu anlatım alanı bitiş       ----------------------------------------------------------------- -->
+
+
+    </section>
+    <!-- /.content -->
+  </div>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+  <footer class="main-footer">
+    <!-- To the right -->
+    <div class="pull-right hidden-xs">
+      Hata Bildir
+    </div>
+    <!-- Default to the left -->
+    <strong>Copyright &copy; 2018 <a href="http://denizyildizlari2.meb.gov.tr">Denizyıldızları MTAL</a>.</strong>
+    Tüm Hakları Saklıdır.
+  </footer>
+  <div class="control-sidebar-bg"></div>
+</div>
+<!-- ./wrapper -->
+
+<!-- REQUIRED JS SCRIPTS -->
+
+<!-- jQuery 3 -->
+<script src="dist/js/jquery.min.js"></script>
+<!-- Bootstrap 3.3.7 -->
+<script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+<!-- AdminLTE App -->
+<script src="dist/js/adminlte.min.js"></script>
+
+<!-- Optionally, you can add Slimscroll and FastClick plugins.
+     Both of these plugins are recommended to enhance the
+     user experience. -->
+<!-- Kod renklendirme javascript dosyası -->
+<script src="plugins/prism/prism.js"></script>
+<script>
+  $('#header-logo').load("icerik/header-logo.html",function(e){
+
+      });
+    $('#sidebar-menu').load("icerik/menu.html",function(e){
+
+      });
+
+      $(document).ready(function() {
+        var url = window.location; 
+        var element = $('ul.sidebar-menu a').filter(function() {
+        return this.href == url || url.href.indexOf(this.href) == 0; }).parent().addClass('active');
+        if (element.is('li')) { 
+             element.addClass('active').parent().parent('li').addClass('active')
+         }
+    });
+
+
+</script>
+</body>
+</html>
